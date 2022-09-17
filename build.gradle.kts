@@ -6,11 +6,13 @@ plugins {
 }
 
 dependencies {
-    implementation("net.kyori:adventure-extra-kotlin:4.9.2")
     implementation("net.kyori:adventure-text-minimessage:4.11.0")
+
     implementation("com.github.ben-manes.caffeine:caffeine:3.1.1")
+
     ksp("dev.zacsweers.autoservice:auto-service-ksp:1.0.0")
     implementation("com.google.auto.service:auto-service-annotations:1.0.1")
+
     testImplementation(kotlin("test"))
 }
 
@@ -19,11 +21,11 @@ sponge {
         displayName("ZoddJoin")
         entrypoint("me.zodd.zoddJoin.ZoddJoin")
         description("A simple Join Message Plugin")
-        version("0.1.0")
+        version("0.1.2")
         links {
-            homepage("https://github.com/DivineGenesis/BetterSoulBinding")
-            source("https://github.com/DivineGenesis/BetterSoulBinding")
-            issues("https://github.com/DivineGenesis/BetterSoulBinding/issues")
+            homepage("https://ore.spongepowered.org/DrZoddiak/ZoddJoin")
+            source("https://github.com/DrZoddiak/ZoddJoin")
+            issues("https://github.com/DrZoddiak/ZoddJoin/issues")
         }
         contributor("DrZodd") {
             description("Lead Developer")

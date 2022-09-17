@@ -1,7 +1,6 @@
 package me.zodd.zoddJoin.listeners
 
 import me.zodd.core.commands.taskBuilder
-import me.zodd.core.logger
 import me.zodd.zoddJoin.cache.ConfigCache
 import me.zodd.zoddJoin.cache.FormatHolder
 import me.zodd.zoddJoin.cache.Holder
@@ -20,8 +19,6 @@ abstract class AbstractListener(private val plugin: PluginContainer) {
             delay(Duration.ofSeconds(delay))
             execute(Runnable { e.invoke() })
         }
-        logger<AbstractListener>().info("submit: ${task.delay().seconds}")
-
         Sponge.server().scheduler().submit(task)
     }
 
@@ -41,7 +38,6 @@ abstract class AbstractListener(private val plugin: PluginContainer) {
     }
 
     fun processFormatSettings(holders: MutableCollection<FormatHolder>, player: ServerPlayer) {
-
         val formatHolder = filter(holders, player)
 
         when (formatHolder.settings.type) {
