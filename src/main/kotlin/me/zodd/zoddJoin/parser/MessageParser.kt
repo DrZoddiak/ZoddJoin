@@ -1,10 +1,7 @@
 package me.zodd.zoddJoin.parser
 
-import me.zodd.core.logger
-import me.zodd.zoddJoin.actions.Action
-import me.zodd.zoddJoin.actions.player.MessageAction
+import me.zodd.zoddJoin.actions.*
 import me.zodd.zoddJoin.actions.services.ActionService
-import kotlin.jvm.optionals.getOrElse
 
 class MessageParser {
 
@@ -17,8 +14,9 @@ class MessageParser {
 
     private val regex = """(\w*)(=?\d*)(:)""".toRegex()
 
+    @kotlin.jvm.Throws(IllegalArgumentException::class)
     private fun parse(string: String): ActionHolder {
-        if (!string.contains(regex)) throw IllegalArgumentException("Invalid configurations")
+        if (!string.contains(regex)) throw IllegalArgumentException("Invalid Syntax, $string")
 
         val splitString = string.split(":", limit = 2)
 
@@ -42,18 +40,16 @@ class MessageParser {
         )
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     private fun parseAction(action: String) : Action {
-        val services = ActionService.serviceSet.stream().filter {
-            it.id == action
-        }.findFirst().getOrElse { MessageAction() }
-        return services
+        return ActionService.serviceSet.firstOrNull() { it.id == action } ?: throw IllegalArgumentException("Invalid Action, $action")
     }
 
+    @kotlin.jvm.Throws(IllegalArgumentException::class)
     private fun parseModifier(modifier: String) : Modifier {
         val split = modifier.split("=")
+        val modifierId = split[0]
         val value = split[1].toInt()
-        return when(split[0]) {
+        return when(modifierId) {
             "CHANCE" -> {
                 Chance(value)
             }
@@ -61,7 +57,7 @@ class MessageParser {
                 Delay(value)
             }
             else -> {
-                throw IllegalArgumentException("Invalid Arg")
+                throw IllegalArgumentException("Invalid Modifier, $modifierId")
             }
         }
     }
