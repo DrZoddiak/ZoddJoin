@@ -3,7 +3,7 @@ package me.zodd.zoddJoin.cache
 import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
 import me.zodd.zoddJoin.config.*
-import me.zodd.zoddJoin.parser.ActionHolder
+import me.zodd.zoddJoin.actions.ActionHolder
 
 object ConfigCache {
     val joinFormatCache: Cache<String, FormatHolder> = Caffeine.newBuilder().build()

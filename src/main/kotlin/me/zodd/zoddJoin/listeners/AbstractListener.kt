@@ -5,7 +5,7 @@ import me.zodd.zoddJoin.cache.ConfigCache
 import me.zodd.zoddJoin.cache.FormatHolder
 import me.zodd.zoddJoin.cache.Holder
 import me.zodd.zoddJoin.cache.MotdHolder
-import me.zodd.zoddJoin.parser.ActionHolder
+import me.zodd.zoddJoin.actions.ActionHolder
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.effect.VanishState
 import org.spongepowered.api.entity.living.player.server.ServerPlayer
