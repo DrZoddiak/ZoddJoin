@@ -1,13 +1,13 @@
 package me.zodd.zoddJoin
 
 import com.google.inject.Inject
-import me.zodd.core.logger
 import me.zodd.zoddJoin.config.MessageConfig
 import me.zodd.zoddJoin.cache.CacheProcessor
 import me.zodd.zoddJoin.listeners.JoinListener
 import me.zodd.zoddJoin.listeners.QuitListener
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.TextComponent
+import org.apache.logging.log4j.Logger
 import org.spongepowered.api.Sponge
 import org.spongepowered.api.config.DefaultConfig
 import org.spongepowered.api.event.Listener
@@ -23,9 +23,9 @@ import org.spongepowered.plugin.builtin.jvm.Plugin
 class ZoddJoin @Inject internal constructor(
     private val container: PluginContainer,
     @DefaultConfig(sharedRoot = false) val reference: ConfigurationReference<CommentedConfigurationNode>,
+    private val logger: Logger
 ) {
 
-    private val logger = logger<ZoddJoin>()
     private lateinit var config: MessageConfig
 
     @Listener
